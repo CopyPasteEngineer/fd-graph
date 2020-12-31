@@ -12,7 +12,10 @@ class Node(GraphicObject):
 
         self.pos = np.array([x, y], dtype=float)
 
-        self.vel = np.random.rand(2)*10 - 5  # [-5, 5)
+        if config.get('graph.node.velocity'):
+            self.vel = np.random.rand(2)*10 - 5  # [-5, 5)
+        else:
+            self.vel = np.array([0, 0], dtype=float)
 
     def update(self):
         self.pos += self.vel
@@ -37,8 +40,8 @@ class Graph(GraphicObject):
         self.edges = set()  # type: Set[Tuple[int]]
 
     def _create_node(self, i):
-        x = np.random.randint(0, self.screen_width)
-        y = np.random.randint(0, self.screen_height)
+        x = np.random.randint(self.screen_width*0.10, self.screen_width*0.90)
+        y = np.random.randint(self.screen_height*0.10, self.screen_height*0.90)
 
         return Node(i, x, y)
 
@@ -128,10 +131,11 @@ class Graph(GraphicObject):
 
     def _draw_edges(self, screen):
         color = config.get('graph.edge.color')
+        width = config.get('graph.edge.width')
 
         for edge in self.edges:
             a, b = map(self.nodes.get, edge)
-            pygame.draw.line(screen, color, a.get_pos(), b.get_pos())
+            pygame.draw.line(screen, color, a.get_pos(), b.get_pos(), width=width)
 
     def _draw_nodes(self, screen):
         for node in self.nodes.values():

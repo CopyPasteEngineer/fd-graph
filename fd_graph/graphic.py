@@ -31,19 +31,26 @@ class GraphicScreen:
         self.running = True
 
         clock = pygame.time.Clock()
+        play = not config.get('game.prompt')
+        first = True
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        play = not play
 
-            self.screen.fill(self.background_color)
+            if play or first:
+                self.screen.fill(self.background_color)
 
-            for o in self.objects:
-                o.update()
+                for o in self.objects:
+                    o.update()
 
-            for o in self.objects:
-                o.draw(self.screen)
+                for o in self.objects:
+                    o.draw(self.screen)
 
+                first = False
             pygame.display.flip()
             clock.tick(self.fps)
 

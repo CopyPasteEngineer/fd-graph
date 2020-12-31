@@ -1,27 +1,30 @@
 game:
-  width: 900
-  height: 600
+  width: 1100
+  height: 800
   color: black
   randomSeed: 42
+  prompt: true
 
 graph:
   node:
+    velocity: true
     color: blue
-    radius: 5
-    maxCount: 100
+    radius: 10
+    maxCount: 30
 
   edge:
     color: green
-    maxCount: 150
+    width: 2
+    maxCount: 35
 
 forces:
   viscosity:
     active: true
-    constant: 0.97
+    constant: 0.95
   spring:
     active: true
-    constant: 0.02
-    length: 15
+    constant: 0.03
+    length: 50
   electric:
-    active: false
-    constant: 500
+    active: true
+    constant: 700
