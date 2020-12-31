@@ -1,6 +1,8 @@
 # Force-directed graph drawing algorithm
 ## โดย [Copy Paste Engineer](https://www.facebook.com/CopyPasteEng)
 
+![](imgs/demo.gif)
+
 คลิปเนื้อหา: [Python Graph Visualization - วาด Network ยังไงให้สวย! (Concept + Code)](https://youtu.be/kC3FLt9UcdM)
 
 วิธีรัน:
